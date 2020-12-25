@@ -73,10 +73,24 @@ export const Display = ({
   }, [isRunning, setTimerFun]);
   return (
     <div className="timer-wrapper">
-      <div className="timer-label" id="timer-label">
+      <div
+        className={`timer-label ${
+          timeInSeconds.current && timeInSeconds.current < 60
+            ? "text-danger"
+            : ""
+        }`}
+        id="timer-label"
+      >
         {isSessionRunning ? "Session" : "Break"}
       </div>
-      <div className="time-left" id="time-left">
+      <div
+        className={`time-left ${
+          timeInSeconds.current && timeInSeconds.current < 60
+            ? "text-danger"
+            : ""
+        }`}
+        id="time-left"
+      >
         {timer}
       </div>
       <audio

@@ -60,10 +60,16 @@
     margin-bottom: 1rem;
     .timer-label {
       font-size: 1.8rem;
+      &.text-danger {
+        color: #a50d0d;
+      }
     }
     .time-left {
       font-size: 4.8rem;
       font-family: sans-serif;
+      &.text-danger {
+        color: #a50d0d;
+      }
     }
   }
   .time-control-wrapper {
