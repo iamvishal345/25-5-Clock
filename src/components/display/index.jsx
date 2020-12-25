@@ -64,10 +64,6 @@ export const Display = ({
     }
   }, [isSessionRunning, breakLength]);
 
-  // useEffect(() => {
-  //   interval.current = setTimerFun();
-  // }, [setTimerFun]);
-
   useEffect(() => {
     if (isRunning) {
       interval.current = setTimerFun();
