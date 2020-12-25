@@ -16,7 +16,6 @@ export const Display = ({
   const setTimerFun = useCallback(() => {
     let minutes, seconds;
     clearInterval(interval.current);
-    console.log();
     return setInterval(
       (function x() {
         if (timeInSeconds.current === -1) {
@@ -44,14 +43,30 @@ export const Display = ({
     clearInterval(interval.current);
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
-    setTimer(`${sessionLength}:00`);
-    timeInSeconds.current = sessionLength * 60;
+    setTimer(`${25}:00`);
+    timeInSeconds.current = 25 * 60;
     setIsSessionRunning(true);
-  }, [resetEvent, sessionLength]);
+  }, [resetEvent]);
 
   useEffect(() => {
-    interval.current = setTimerFun();
-  }, [setTimerFun]);
+    if (isSessionRunning) {
+      setTimer(
+        `${sessionLength < 10 ? "0" + sessionLength : sessionLength}:00`
+      );
+      timeInSeconds.current = sessionLength * 60;
+    }
+  }, [isSessionRunning, sessionLength]);
+
+  useEffect(() => {
+    if (!isSessionRunning) {
+      setTimer(`${breakLength < 10 ? "0" + breakLength : breakLength}:00`);
+      timeInSeconds.current = breakLength * 60;
+    }
+  }, [isSessionRunning, breakLength]);
+
+  // useEffect(() => {
+  //   interval.current = setTimerFun();
+  // }, [setTimerFun]);
 
   useEffect(() => {
     if (isRunning) {
